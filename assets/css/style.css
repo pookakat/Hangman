@@ -33,6 +33,9 @@ h1.container{
 .centercontent{
     justify-content: center;
 }
-.textright{
-    text-align: right;
+.textcenter{
+    text-align: center;
+}
+.piece{
+    opacity: 0;
 }

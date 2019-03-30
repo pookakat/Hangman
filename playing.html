@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="row d-flex justify-content-between">
                                     <div class="column sm-3">
-                                        <h1 class="noggin">O</h1>
+                                        <h1 class="piece noggin">O</h1>
                                     </div>
                                     <div class="column sm-9">
                                         <h1>|</h1>
@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="row d-flex justify-content-between">
                                     <div class="column sm-3">
-                                        <h1><span class="rtArm">/</span><span class="thorax">|</span><span class="ltArm">\</span></h1>
+                                        <h1><span class="piece rtArm">/</span><span class="piece chest">|</span><span class="piece ltArm">\</span></h1>
                                     </div>
                                     <div class="column sm-9">
                                         <h1>|</h1>
@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="row d-flex justify-content-between">
                                     <div class="col-sm-3">
-                                        <h1 class="belly">|</h1>
+                                        <h1 class="piece belly">|</h1>
                                     </div>
                                     <div class="column sm-9">
                                         <h1>|</h1>
@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="row d-flex justify-content-between">
                                         <div class="col-sm-3">
-                                            <h1><span class="rtLeg">/</span><span class="ltLeg">\</span>
+                                            <h1><span class="piece ltLeg">/</span><span class="piece rtLeg">\</span>
                                         </div>
                                         <div class="column sm-9">
                                             <h1>|</h1>
@@ -62,58 +62,13 @@
                         </div>
                     </div>
                     <div id="word" class="centercontent btn-primary btn"></div>
-                    <div id="lettersGuessed centercontent"></div>
+                    <h2 class="centercontent">Letters Guessed:</h2>
+                    <div id="lettersGuessed" class= "textcenter"></div>
                 </div>
             </div>
         </div>
     </div>
     
-    <script>
-        var lexicon = ["saddlebred", "walker", "arabian", "thoroughbred", "clydesdale", "welsh", "friesian", "paint", "morgan", "percheron", "belgian", "quarter", "dales", "hackney", "fell", "anglo", "morab", "shire", "standardbred"];
-        var w=0;
-        p=Math.floor(Math.random()*lexicon.length);
-        y =lexicon[p];
-        var no=0;
-        
-        let computerWord=y.split("");
-        console.log(computerWord);
-
-        var currentDiv = document.getElementById("word"); 
-        var letterContainers=[];
-
-        for (var also=0; also<computerWord.length; also ++){
-            console.log(also);
-            thisLetter=computerWord[also];
-            var outDiv=document.createElement("div");
-            outDiv.classList.add("outer");
-            var newDiv = document.createElement("div");  
-            newDiv.classList.add("letter");
-            var newContent = document.createTextNode(thisLetter); 
-            newDiv.appendChild(newContent);  
-            outDiv.appendChild(newDiv);
-            letterContainers.push(newDiv);
-            currentDiv.append(outDiv);
-            }
-
-        function check(x){
-            if (computerWord.indexOf(x) === -1){
-                console.log("Wrong!");
-                return;
-            }
-            for (let i=0; i<computerWord.length; i++){
-                if (x === computerWord[i]){
-                    letterContainers[i].setAttribute("style", "opacity:1");
-                }
-                
-            }
-        }
-        
-        
-        document.addEventListener("keydown", function (e) {
-            check(e.key);
-        });
-        
-        
-    </script>
+    <script src="assets/javascript/hangman.js"></script>
 </body>
 </html>
