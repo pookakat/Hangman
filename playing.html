@@ -4,39 +4,116 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     <title>Hangman</title>
 </head>
 <body>
-    <h1>Hangman!</h1>
-    <div></div>
+    <div class="row">
+    <h1 class="container alert-info">Pony Hangman!</h1>
+    </div>
+    <div class="row">
+       <div class="container align-top">
+            <div class="jumbotron whitebkd container-fluid">
+                <div class="col-lg-12 whitebkg">
+                    <div class="row centercontent">
+                        <div class="column">
+                            <div class="container">
+                                <div class="row">
+                                    <h1>|------------------------|</h1>
+                                </div>
+                                <div class="row d-flex justify-content-between">
+                                    <div class="column sm-3">
+                                        <h1 class="noggin">O</h1>
+                                    </div>
+                                    <div class="column sm-9">
+                                        <h1>|</h1>
+                                    </div>
+                                </div>
+                                <div class="row d-flex justify-content-between">
+                                    <div class="column sm-3">
+                                        <h1><span class="rtArm">/</span><span class="thorax">|</span><span class="ltArm">\</span></h1>
+                                    </div>
+                                    <div class="column sm-9">
+                                        <h1>|</h1>
+                                    </div>
+                                </div>
+                                <div class="row d-flex justify-content-between">
+                                    <div class="col-sm-3">
+                                        <h1 class="belly">|</h1>
+                                    </div>
+                                    <div class="column sm-9">
+                                        <h1>|</h1>
+                                    </div>
+                                </div>
+                                <div class="row d-flex justify-content-between">
+                                        <div class="col-sm-3">
+                                            <h1><span class="rtLeg">/</span><span class="ltLeg">\</span>
+                                        </div>
+                                        <div class="column sm-9">
+                                            <h1>|</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <h1>--------------------------|</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="word" class="centercontent btn-primary btn"></div>
+                    <div id="lettersGuessed centercontent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <script>
-        var lexicon = ["cat", "dog", "leg", "sit"];
+        var lexicon = ["saddlebred", "walker", "arabian", "thoroughbred", "clydesdale", "welsh", "friesian", "paint", "morgan", "percheron", "belgian", "quarter", "dales", "hackney", "fell", "anglo", "morab", "shire", "standardbred"];
         var w=0;
-        p=Math.floor(Math.random()*3);
+        p=Math.floor(Math.random()*lexicon.length);
         y =lexicon[p];
+        var no=0;
         
-        computerWord=y.split("");
+        let computerWord=y.split("");
         console.log(computerWord);
 
-        word = prompt("What's a random word?");
-        x = word.split("");
-            for (var i=0; i<x.length; i++){
-                if (x[i] === computerWord[i]){
-                    console.log('Ok....');
-                    w++;
-                }
-                else{
-                    console.log('WRONG!');
-                    break;
-                }
+        var currentDiv = document.getElementById("word"); 
+        var letterContainers=[];
+
+        for (var also=0; also<computerWord.length; also ++){
+            console.log(also);
+            thisLetter=computerWord[also];
+            var outDiv=document.createElement("div");
+            outDiv.classList.add("outer");
+            var newDiv = document.createElement("div");  
+            newDiv.classList.add("letter");
+            var newContent = document.createTextNode(thisLetter); 
+            newDiv.appendChild(newContent);  
+            outDiv.appendChild(newDiv);
+            letterContainers.push(newDiv);
+            currentDiv.append(outDiv);
             }
-        if (w===3) {
-            console.log('You win!');
+
+        function check(x){
+            if (computerWord.indexOf(x) === -1){
+                console.log("Wrong!");
+                return;
+            }
+            for (let i=0; i<computerWord.length; i++){
+                if (x === computerWord[i]){
+                    letterContainers[i].setAttribute("style", "opacity:1");
+                }
+                
+            }
         }
-        else{
-            console.log('You lose!');
-        }
+        
+        
+        document.addEventListener("keydown", function (e) {
+            check(e.key);
+        });
+        
+        
     </script>
 </body>
 </html>
