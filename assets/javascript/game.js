@@ -5,13 +5,11 @@ const lexicon = ["saddlebred", "walker", "arabian", "thoroughbred", "clydesdale"
         const hangman = ["noggin", "rtArm", "chest", "ltArm", "belly", "rtLeg", "ltLeg"];
         
         let computerWord=y.split("");
-        console.log(computerWord);
 
         var currentDiv = document.getElementById("word"); 
         var letterContainers=[];
 
         for (var also=0; also<computerWord.length; also ++){
-            console.log(also);
             thisLetter=computerWord[also];
             var outDiv=document.createElement("div");
             outDiv.classList.add("outer");
@@ -30,7 +28,7 @@ const lexicon = ["saddlebred", "walker", "arabian", "thoroughbred", "clydesdale"
                 return;
             }
             if (computerWord.indexOf(x) === -1){
-                let piece=hangman.shift();console.log(piece);
+                let piece=hangman.shift();
                 if (!piece){
                     alert("You're dead, bro! Game over!");
                     return;
